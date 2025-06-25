@@ -9,7 +9,7 @@ Le frontend affiche un graphe avec vis-network, et le backend fournit les donné
 
 Voici un diagramme simple de l’architecture globale du projet :
 
-
+```plaintext
 +-----------------------+          HTTP/REST API          +-------------------+
 |                       |   <-------------------------->  |                   |
 |    Frontend (HTML +   |                                |      Backend       |
@@ -23,7 +23,7 @@ Voici un diagramme simple de l’architecture globale du projet :
             +----------------------> |  (cache, etc.) | <-----------+
                                      |   (port 6379)  |
                                      +----------------+
-
+```
 
 ---
 
@@ -32,82 +32,84 @@ Voici un diagramme simple de l’architecture globale du projet :
 Cloner le repo, puis installer les dépendances (frontend & backend) :
 
 ```bash
-# Installer les dépendances côté backend et frontend
 npm install
-Lancement
+```
+
 Le projet est packagé avec Docker pour un démarrage simple.
+
 Lancer la stack complète (backend + frontend + cache Redis) avec la commande :
 
-bash
-Copier
-Modifier
+```bash
 docker-compose up -d
-Le frontend sera accessible sur :
+```
+
+Le frontend sera accessible sur :  
 http://localhost:8080
 
 Le backend est accessible sur le port 3000 en interne dans le container.
 
+---
 
-Utilisation
-Saisir une requête dans le champ de recherche (ex : solutions acoustiques de sonorisation)
+## Utilisation
 
-Cliquer sur Rechercher
+- Saisir une requête dans le champ de recherche (ex : solutions acoustiques de sonorisation)  
+- Cliquer sur Rechercher  
+- Le graphe se charge et s’affiche dans la zone dédiée (hauteur ~600px)  
+- Cliquer sur un noeud avec URL ouvre la page correspondante dans un nouvel onglet  
 
-Le graphe se charge et s’affiche dans la zone dédiée (hauteur ~600px)
+---
 
-Cliquer sur un noeud avec URL ouvre la page correspondante dans un nouvel onglet
+## Gestion des erreurs
 
-Gestion des erreurs
-En cas d’erreur backend ou réponse vide, un message d’erreur s’affiche sous la barre de recherche.
-
+En cas d’erreur backend ou réponse vide, un message d’erreur s’affiche sous la barre de recherche.  
 Le frontend gère proprement les cas sans données à afficher.
 
-Tests End-to-End (E2E)
-Des tests Playwright valident :
+---
 
-Le chargement du graphe depuis le backend
+## Tests End-to-End (E2E)
 
-L’affichage du canvas SVG dans le shadow DOM
-
-La réponse API avec au moins un noeud
-
-Le temps de chargement du graphe en moins de 3 secondes
+Des tests Playwright valident :  
+- Le chargement du graphe depuis le backend  
+- L’affichage du canvas SVG dans le shadow DOM  
+- La réponse API avec au moins un noeud  
+- Le temps de chargement du graphe en moins de 3 secondes
 
 Pour lancer les tests E2E (localement, hors Docker) :
 
-bash
-Copier
-Modifier
+```bash
 npm run test:e2e
+```
 
-Tests unitaires (Backend)
+---
+
+## Tests unitaires (Backend)
+
 Les tests unitaires sont écrits avec Jest.
 
-Lancer les tests :
-bash
-Copier
-Modifier
+Pour lancer les tests :
+
+```bash
 cd backend
 npm install
 npm test
+```
 
+---
 
-Améliorations possibles
-Ajouter un spinner pendant le chargement
+## Améliorations possibles
 
-Gestion plus fine des erreurs serveur
+- Ajouter un spinner pendant le chargement  
+- Gestion plus fine des erreurs serveur  
+- Rendre le graphe responsive mobile  
+- Ajouter des interactions utilisateur supplémentaires  
+- Sanitiser la requête utilisateur côté frontend et/ou backend pour éviter :  
+  - les tentatives d'injection (ex: script, caractères spéciaux, etc.)  
+  - les appels inutiles à l'API avec des caractères non pertinents  
 
-Rendre le graphe responsive mobile
+---
 
-Ajouter des interactions utilisateur supplémentaires
+## Contact
 
-Sanitiser la requête utilisateur côté frontend et/ou backend pour éviter :
-les tentatives d'injection (ex: script, caractères spéciaux, etc.)
-les appels inutiles à l'API avec des caractères non pertinents
-
-
-
-Contact
 Pour toute question, contact : korneel.loy@gmail.com
 
 Projet réalisé avec Daryl - Juin 2025
