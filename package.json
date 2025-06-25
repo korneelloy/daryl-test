@@ -1,0 +1,10 @@
+{
+  "name": "full-stack-endtoend-test",
+  "version": "1.0.0",
+  "scripts": {
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.37.0"
+  }
+}

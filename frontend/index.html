@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Résultat de Graphe</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <img src="https://daryl-ai.com/wp-content/uploads/2025/04/DARYL_hwt.png" alt="Logo DARYL" width="200" />
+
+  <body class="bg-gray-100 text-gray-800 font-sans p-6">
+    <h1 class="text-3xl font-bold mb-4">Résultat du graphe</h1>
+  
+    <label for="search" class="block mb-2 font-semibold">Requête :</label>
+    <input id="search" type="text" placeholder="Ex: Recommandation pour un local technique de piscine" class="border p-2 rounded w-full max-w-md mb-4" />
+    <button id="searchBtn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">Rechercher</button>
+  
+    <div id="status" class="mt-4 text-sm text-red-600"></div>
+  
+    <result-graph class="mt-6 block w-full max-w-4xl h-[600px] border rounded shadow"></result-graph>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="module">
+    import '/components/result-graph.js';
+
+    async function fetchGraph(query) {
+      const status = document.getElementById('status');
+      status.textContent = 'Chargement...';
+
+      try {
+        const response = await fetch('http://localhost:3000/api/graph?query=' + encodeURIComponent(query));
+        if (!response.ok) throw new Error('Erreur de requête');
+
+        const data = await response.json();
+        const graphData = data.graph;
+
+        if (!graphData?.nodes?.length) {
+          status.textContent = 'Aucun résultat trouvé pour cette requête.';
+          return;
+        }
+
+        const graphElement = document.querySelector('result-graph');
+        graphElement.data = graphData;
+        status.textContent = '';
+      } catch (error) {
+        console.error('Erreur :', error);
+        status.textContent = 'Erreur lors du chargement du graphe.';
+      }
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const query = document.getElementById('search').value.trim();
+      if (query) {
+        fetchGraph(query);
+      }
+    });
+    fetchGraph('solutions acoustiques de sonorisation');
+  </script>
+</body>
+</html>
