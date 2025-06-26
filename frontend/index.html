@@ -29,7 +29,7 @@
       status.textContent = 'Chargement...';
 
       try {
-        const response = await fetch('http://localhost:3000/api/graph?query=' + encodeURIComponent(query));
+        const response = await fetch('http://localhost:5000/api/graph?query=' + encodeURIComponent(query));
         if (!response.ok) throw new Error('Erreur de requête');
 
         const data = await response.json();

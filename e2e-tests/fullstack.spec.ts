@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('full stack search and graph rendering', async ({ page }) => {
   // 1. Aller sur la page frontend
-  await page.goto('http://localhost:8080');
+  await page.goto('http://localhost:3000');
 
   // 2. Entrer une requête
   const input = page.getByPlaceholder('Ex: Local technique de piscine');

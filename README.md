@@ -10,11 +10,11 @@ Le frontend affiche un graphe avec vis-network, et le backend fournit les donné
 Voici un diagramme simple de l’architecture globale du projet :
 
 ```plaintext
-+-----------------------+          HTTP/REST API          +-------------------+
++-----------------------+          HTTP                   +-------------------+
 |                       |   <-------------------------->  |                   |
 |    Frontend (HTML +   |                                |      Backend       |
-|    Web Component JS)   |                                |  Node.js + Express |
-|       (port 8080)      |                                |     (port 3000)    |
+|    Web Component JS)  |                                |  Node.js + Express |
+|       (port 3000)     |                                |     (port 5000)    |
 +-----------------------+                                +-------------------+
             |                                                       |
             |                                                       |
@@ -44,9 +44,9 @@ docker-compose up -d
 ```
 
 Le frontend sera accessible sur :  
-http://localhost:8080
+http://localhost:3000
 
-Le backend est accessible sur le port 3000 en interne dans le container.
+Le backend est accessible sur le port 5000 en interne dans le container.
 
 ---
 
