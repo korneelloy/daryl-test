@@ -77,7 +77,7 @@ Des tests Playwright valident :
 Pour lancer les tests E2E (localement, hors Docker) :
 
 ```bash
-npm run test:e2e
+npm run e2e
 ```
 
 ---

@@ -5,7 +5,7 @@ test('full stack search and graph rendering', async ({ page }) => {
   await page.goto('http://localhost:8080');
 
   // 2. Entrer une requête
-  const input = page.getByPlaceholder('Ex: Recommandation pour un local technique de piscine');
+  const input = page.getByPlaceholder('Ex: Local technique de piscine');
   await input.fill('solutions acoustiques de sonorisation');
 
   const start = Date.now();
